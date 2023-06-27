@@ -9,7 +9,7 @@ function App() {
   const [status, setStatus] = useState<"playing" | "finished">("playing");
   const [words, setWords] = useState<string[][]>(
     //Imagine this can be a very complex calculation
-    () => Array.from({ length: 6 }, () => new Array(5).fill(""))
+    () => Array.from({ length: 6 }, () => new Array(5).fill("")) // lazy load
   );
   const [renderWordsArray, setRenderWordsArray] = useState(false);
 
@@ -54,7 +54,7 @@ function App() {
             return;
           }
           case "Backspace": {
-            let wordsCopy = [...words];
+            let wordsCopy = [...words]; // create copy instead of direct mutate of state variable
             let firstEmptyIndex = words[turn].findIndex(
               (letter) => letter === ""
             );
@@ -99,7 +99,7 @@ function App() {
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-    };
+    }; // this is component unMount
   }, [handleKeyDown]);
 
   if (isLoading) return "Loading...";
