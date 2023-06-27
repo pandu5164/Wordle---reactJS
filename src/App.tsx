@@ -54,7 +54,7 @@ function App() {
             return;
           }
           case "Backspace": {
-            let wordsCopy = [...words];
+            let wordsCopy = [...words]; // create copy instead of direct mutate of state variable
             let firstEmptyIndex = words[turn].findIndex(
               (letter) => letter === ""
             );
